@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<nodedefs>   
+    <nodedef name="PowerUSBSource" class="vdab.extnodes.powercontrol.PowerUSBSource">
+</nodedef>
+<nodedef name="PowerUSBService" class="vdab.extnodes.powercontrol.PowerUSBService" >
+    <attr name="ConsumedEventTypes">Trigger,Event</attr>
+    <attr name="PublishedEventTypes">String</attr>
+    <attr name="NodeOverview">Controls power outlets controlled by a PowerUSB device.</attr>   
+    <attr name="NodeQuality" >Alpha</attr>   
+	<datadef name="PowerCommand">
+		<attr name="Category">Required</attr>
+		<attr name="Enum">PowerCommand</attr>
+	</datadef>
+	<datadef name="OutletNumber">
+		<attr name="Category">Required</attr>
+		<attr name="Enum">OutletNumber</attr>
+	</datadef>
+	<datadef name="Command">
+		<attr name="Category">System</attr>
+	</datadef>
+	<datadef name="DropLines">
+		<attr name="Category">System</attr>
+	</datadef>
+	<datadef name="MaxLines">
+		<attr name="Category">System</attr>
+	</datadef>
+</nodedef>
+<nodedef class="vdab.extnodes.powercontrol.PowerUSBMonitorService" >
+    <attr name="ConsumedEventTypes">Trigger</attr>
+    <attr name="PublishedEventTypes">Number</attr>
+    <attr name="NodeDescTemplate">monitor ${MonitorItem}</attr>
+    <attr name="NodeQuality" >Alpha</attr>    
+	<datadef name="MonitorItem">
+		<attr name="Category">Required</attr>
+		<attr name="Enum">MonitorItem</attr>
+	</datadef>
+	<datadef name="Command">
+		<attr name="Category">System</attr>
+	</datadef>
+	<datadef name="DropLines">
+		<attr name="Category">System</attr>
+	</datadef>
+	<datadef name="MaxLines">
+		<attr name="Category">System</attr>
+	</datadef>
+</nodedef>
+<nodedef name="WebPowerSwitchService" class="vdab.extnodes.powercontrol.WebPowerSwitchService" >
+    <attr name="ConsumedEventTypes">Trigger,Event</attr>
+    <attr name="PublishedEventTypes">String</attr>
+    <attr name="NodeDescTemplate"> ${PowerCommand} ${OutletNumber}</attr>
+    <attr name="NodeQuality" >Alpha</attr>   
+    <attr name="NodeOverview"> Controls power using the Digital Power web power switch.</attr>
+    <datadef name="SelectedElement">
+		<attr name="Category">Advanced</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="EditOrder" type="Integer">4</attr>	
+		<attr name="Desc">Selects the data that will be sent to the customized Java function. </attr> 			
+	</datadef>  
+	<datadef name="PowerCommand">
+		<attr name="Category">Required</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="RefreshOnChange" type="Boolean">true</attr>
+		<attr name="EditOrder" type="Integer">3</attr>	
+		<attr name="Enum">WPS_PowerCommand</attr>
+	</datadef>
+	<datadef name="OutletNumber">
+		<attr name="Category">Required</attr>
+		<attr name="EditWhileRunning" type="Boolean">true</attr>
+		<attr name="EditOrder" type="Integer">5</attr>	
+		<attr name="Enum">WPS_OutletNumber</attr>
+	</datadef>
+</nodedef>
+</nodedefs>
